@@ -1,6 +1,8 @@
-<h1>Cocktails#new</h1>
+<h1>Name your Cocktail</h1>
 
-<%= simple_form_for @cocktail do |f| %>
+<%= simple_form_for @cocktail, defaults: { input_html: { class: 'col-sm-6' } } do |f| %>
   <%= f.input :name %>
   <%= f.button :submit, 'Submit new Cocktail', class: 'btn btn-primary' %>
 <% end %>
+
+<%= link_to "Back to all Cocktails", cocktails_path, class: 'btn btn-primary my-2' %>
