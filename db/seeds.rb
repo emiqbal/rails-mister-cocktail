@@ -16,7 +16,11 @@ url = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
 drinks_serialized = open(url).read
 drinks_list = JSON.parse(drinks_serialized)
 
-cocktail = Cocktail.create!(name: drinks_list["drinks"].first["strDrink"])
+file = URI.open(drinks_list["drinks"].first["strDrinkThumb"])
+
+cocktail = Cocktail.new(name: drinks_list["drinks"].first["strDrink"])
+cocktail.photo.attach(io: file, filename: "#{drinks_list["drinks"].first["strDrink"]}.png", content_type: 'image/png')
+cocktail.save!
 end
 
 # Ingredient Seed

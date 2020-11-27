@@ -4,9 +4,7 @@
   <%  @cocktails.each do |cocktail|%>
     <div class="col-sm-6 col-md-4 d-flex justify-content-center">
       <div class="card my-2 bg-light text-dark" style="width: 18rem;">
-        <% word = cocktail.name.split(' ').join(',') %>
-        <%= image_tag ("https://source.unsplash.com/featured/300x200/?'cocktail',#{word}"), class: "card-img-top" %>
-<!--         <img src='https://source.unsplash.com/1600x900/?cocktail' class="card-img-top"> -->
+        <%= cl_image_tag cocktail.photo.key, height: 300, width: 200, crop: :fill, class: "card-img-top" %>
         <div class="card-body">
         <h5 class="card-title"><%= cocktail.name %></h5>
         </div>

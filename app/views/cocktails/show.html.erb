@@ -1,5 +1,5 @@
 <h1><%= @cocktail.name %></h1>
-<%= image_tag ("https://source.unsplash.com/300x200/?#{@cocktail.name},cocktail") %>
+<%= cl_image_tag @cocktail.photo.key, crop: :fill %>
 
 <h3 class="my-2">Recipe</h3>
 <ul>
