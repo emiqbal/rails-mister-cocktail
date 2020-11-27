@@ -2,7 +2,7 @@
 
 <%= simple_form_for @cocktail, defaults: { input_html: { class: 'col-sm-6' } } do |f| %>
   <%= f.input :name %>
-  <%= f.input :photo, as: :file %>
+  <%= f.input :photo, as: :file, %>
   <%= f.button :submit, 'Submit new Cocktail', class: 'btn btn-primary' %>
 <% end %>
 
