@@ -1,31 +1,33 @@
-<h1><%= @cocktail.name %></h1>
+<div class="cocktail-page">
+  <h1><%= @cocktail.name %></h1>
 
-<%= cl_image_tag @cocktail.photo.key, height: 300, crop: :fill %>
+  <%= cl_image_tag @cocktail.photo.key, height: 300, crop: :fill %>
 
-<h3 class="my-2">Reviews</h3>
-<ul>
-  <%  @cocktail.reviews.each do |review|%>
-    <li>(<%= review.rating %> out of 5) <p><%= review.detail %>
-      <%= link_to "Delete Review", review_path(review), method: :delete %></li>
+  <h3 class="my-2">Reviews</h3>
+  <ul>
+    <%  @cocktail.reviews.each do |review|%>
+      <li>(<%= review.rating %> out of 5) <p><%= review.detail %>
+        <%= link_to " ", review_path(review), method: :delete, class: "fas fa-trash" %></li>
+    <% end %>
+  </ul>
+
+  <%= link_to "Add a review", new_cocktail_review_path(@cocktail), class: 'btn btn-primary my-2' %>
+
+  <h3 class="my-2">Doses</h3>
+  <ul>
+    <%  @cocktail.doses.each do |dose|%>
+      <li><%= dose.description %> <%= dose.ingredient.name %> <%= link_to " ", dose_path(dose), method: :delete, class: "fas fa-trash" %></li>
+    <% end %>
+  </ul>
+
+
+  <h3 class="my-2">Add a New Dose</h3>
+
+  <%= simple_form_for [@cocktail, @dose], defaults: { input_html: { class: 'col-sm-6' } } do |f| %>
+    <%= f.input :description %>
+    <%= f.association :ingredient, collection: Ingredient.order(:name) %>
+    <%= f.button :submit, 'Submit new Dose', class: 'btn btn-primary' %>
   <% end %>
-</ul>
 
-<%= link_to "Add a review", new_cocktail_review_path(@cocktail), class: 'btn btn-primary my-2' %>
-
-<h3 class="my-2">Doses</h3>
-<ul>
-  <%  @cocktail.doses.each do |dose|%>
-    <li><%= dose.description %> <%= dose.ingredient.name %> <%= link_to "Delete Ingredient", dose_path(dose), method: :delete %></li>
-  <% end %>
-</ul>
-
-
-<h3 class="my-2">Add a New Dose</h3>
-
-<%= simple_form_for [@cocktail, @dose], defaults: { input_html: { class: 'col-sm-6' } } do |f| %>
-  <%= f.input :description %>
-  <%= f.association :ingredient, collection: Ingredient.order(:name) %>
-  <%= f.button :submit, 'Submit new Dose', class: 'btn btn-primary' %>
-<% end %>
-
-<%= link_to "Back to all Cocktails", cocktails_path, class: 'btn btn-primary my-2' %>
+  <%= link_to "Back to all Cocktails", cocktails_path, class: 'btn btn-primary my-2' %>
+</div>
