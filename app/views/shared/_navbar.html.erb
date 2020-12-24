@@ -1,8 +1,8 @@
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-light">
   <div class="container-fluid">
-    <span class="navbar-brand mb-0 h1">Cocktails Galore</span>
-      <span class="navbar-nav">
-        <button class="nav-link btn btn-outline-primary" href="#">Create Cocktail</button>
-      </span>
+    <%= link_to "Cocktails Galore", root_path, class: "navbar-brand" %>
+    <span class="navbar-nav">
+      <%= button_to "Create Cocktail", new_cocktail_path, method: :get, class: "btn btn-outline-primary" %>
+    </span>
   </div>
 </nav>
